@@ -93,16 +93,16 @@ shinyApp(
   ui <- fluidPage(
     DT::dataTableOutput("entries", width = 300), tags$hr(),
     titlePanel("Pan Trap Data Entry"),
-    textInput("setup_names", "Setup Name(s)", ""),
-    textInput("collect_names", "Collection Name(s)", ""),
+    selectInput("who_entered", "Name of person entering data",
+                choices = people,
+                selected = ""),
+    textInput("setup_names", "Who Did Setup? Name(s)", ""),
+    textInput("collect_names", "Who Did Collection? Name(s)", ""),
     selectInput("site_ID", "Site ID" ,
                 choices = sites,
                 selected = ""),
-    selectInput("slot_ID", "Plot ID", 
+    selectInput("plot_ID", "Plot ID", 
                 choices = plotIDs,
-                selected = ""),
-    selectInput("who_entered", "Name of person entering data",
-                choices = people,
                 selected = ""),
     dateInput("set_date", "Setup Date", "2025-04-01", format = "yyyy/mm/dd"),
     dateInput("collect_date", "Collection Date", "2025-04-01", format = "yyyy/mm/dd"),
@@ -143,10 +143,13 @@ shinyApp(
     
     # Whenever a field is filled, aggregate all form data
     formData <- eventReactive(input$submit, {
-      data <- sapply(fields, function(x) input[[x]])
-      data <- data %>% as.list() %>% data.frame() 
-      data$Temp_min <- as.numeric(data$Temp_min)
-      data$Temp_max <- as.numeric(data$Temp_max)
+      data <- sapply(fields, function(x) {
+        val <- input[[x]]
+        if (is.null(val)) NA else val
+      }, simplify = FALSE)
+      data <- as.data.frame(data, stringsAsFactors = FALSE)
+      data$temp_min <- as.numeric(data$temp_min)
+      data$temp_max <- as.numeric(data$temp_max)
       data
     })
     
@@ -168,10 +171,11 @@ shinyApp(
 
 # test Run the app locally----
 shinyApp(ui = ui, server = server)
+#runApp(appDir = "./", display.mode="showcase")
 
 # to push the app to Shiny.io to share with others deploy it here:
 
-#library(rsconnect)
+library(rsconnect)
 #rsconnect::deployApp('path/to/your/app')
-#rsconnect::deployApp('/Users/gra38/Library/CloudStorage/Box-Box/Repositories/NYPollinatorData/')
-
+rsconnect::deployApp('/Users/gra38/Library/CloudStorage/Box-Box/Repositories/NYPollinatorData/')
+# NOTE: When you deploy the console will yield a warning message about uid values replaces as 'nobody' user. this is ok.
