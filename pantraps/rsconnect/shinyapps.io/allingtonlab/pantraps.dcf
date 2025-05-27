@@ -1,0 +1,12 @@
+name: pantraps
+title: pantraps
+username: allingtonlab
+account: allingtonlab
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 14818869
+bundleId: 10336461
+url: https://allingtonlab.shinyapps.io/pantraps/
+version: 1
+asMultiple: FALSE
+asStatic: FALSE

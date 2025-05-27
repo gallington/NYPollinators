@@ -1,5 +1,5 @@
-# THIS WORKS IF RUN LOCALLY. IT UPDATES THE INPUT TO THE GOOGLE SHEET.
-
+# THIS IS THE VERSION THAT DEPLOYS TO SHINYAPPS.io
+library(rlang)
 library(shiny)
 library(shinyFeedback)
 library(dplyr)
@@ -11,44 +11,35 @@ library(lubridate)
 library(shinyTime)
 library(rsconnect)
 
-
 ### Before running the app copy the following lines of code into the console
-#rsconnect::setAccountInfo(name='allingtonlab', token='20FB3DB97DEDF0C6A01EE094FF959E48', secret='Xck6O3lqhzWL2xD6BQKhSEbabiLiIaC16TD3eewq')
-#rsconnect::deployApp('/Users/gra38/Library/CloudStorage/Box-Box/Repositories/NYPollinatorData/') #eventually move this to pantraps
+# rsconnect::setAccountInfo(name='allingtonlab', 
+   #                       token='20FB3DB97DEDF0C6A01EE094FF959E48', 
+    #                      secret='Xck6O3lqhzWL2xD6BQKhSEbabiLiIaC16TD3eewq')
 
 
-# library(googlesheets4)
-# setwd('/Users/gra38/Library/CloudStorage/Box-Box/Repositories/NYPollinatorData')
-# gs4_auth(email = "your@email.edu", cache = ".secrets")
-# Make sure to update your .gitignore to include .secrets and */.secrets
-# You will be taken to an authorization page, make sure to check the box that allows for editing
-###
-
-gs4_auth(cache = ".secrets", email = "allingtonlab@gmail.com")
-
-#gs4_auth(path = "nypollinators-ba8dc68e43a5.json")
+gs4_auth(path = "nypollinators-ba8dc68e43a5.json")
 #gs4_auth(scopes = "https://www.googleapis.com/auth/spreadsheets")
 
 
 sheet_id <- "https://docs.google.com/spreadsheets/d/1i4GgeNNNyl9zKKzhKfvoYChdTlrl_AHzKt_q0farXtc/edit?gid=0#gid=0"
-
+#sheet_id<- "https://docs.google.com/spreadsheets/d/1Or4p-1j4T8hidApszksb2LbLrrQPGoHgnljoqx9cGXw/edit?gid=0#gid=0"
 # the fields need to match the google sheet column headers AND the input IDs
-fields <- c("site_ID",	
+fields <- c("who_entered",
+            "setup_names",
+            "collect_names",
+            "site_ID",	
             "plot_ID",
              "set_date",	
              "collect_date",
-             "setup_names",
-            "collect_names",	
-	          "start_date_time",	
+            "start_date_time",	
 	          "end_date_time",	
-            "sample_effort_hr",
+           # "sample_effort_hr",
             "num_traps_set",	
 	          "num_traps_collect",	
              "sky",
             "wind",
             "temp_min",
             "temp_max",
-             "who_entered",
             "notes")
 
 people <- list("GA",
@@ -147,13 +138,14 @@ shinyApp(
     
     # Whenever a field is filled, aggregate all form data
     formData <- eventReactive(input$submit, {
-      data <- sapply(fields, function(x) {
-        val <- input[[x]]
-        if (is.null(val)) NA else val
-      }, simplify = FALSE)
+      data <- sapply(fields, function(x) input[[x]] %||% NA)
+      data <- as.list(data)
       data <- as.data.frame(data, stringsAsFactors = FALSE)
-      data$temp_min <- as.numeric(data$temp_min)
-      data$temp_max <- as.numeric(data$temp_max)
+      
+      # Optional: ensure numeric conversion if needed
+      data$Temp_min <- as.numeric(data$Temp_min)
+      data$Temp_max <- as.numeric(data$Temp_max)
+      
       data
     })
     
@@ -175,11 +167,16 @@ shinyApp(
 
 # test Run the app locally----
 shinyApp(ui = ui, server = server)
-#runApp(appDir = "./", display.mode="showcase")
+runApp(appDir = "./", display.mode="showcase")
 
-# to push the app to Shiny.io to share with others deploy it here:
+# to push the app to Shiny.io to share with others run this in the Console-do not save in teh app!:
+
+#rsconnect::deployApp('.')
+
+
+
 
 
 #rsconnect::deployApp('path/to/your/app')
-#rsconnect::deployApp('/Users/gra38/Library/CloudStorage/Box-Box/Repositories/NYPollinatorData/')
 # NOTE: When you deploy the console will yield a warning message about uid values replaces as 'nobody' user. this is ok.
+
