@@ -14,41 +14,42 @@ library(rsconnect)
 
 ### Before running the app copy the following lines of code into the console
 #rsconnect::setAccountInfo(name='allingtonlab', token='20FB3DB97DEDF0C6A01EE094FF959E48', secret='Xck6O3lqhzWL2xD6BQKhSEbabiLiIaC16TD3eewq')
+    ## CHANGE THIS, because you can't put absolute paths in calls to deploy
 #rsconnect::deployApp('/Users/gra38/Library/CloudStorage/Box-Box/Repositories/NYPollinatorData/') #eventually move this to pantraps
 
-
+#
 # library(googlesheets4)
-# setwd('/Users/gra38/Library/CloudStorage/Box-Box/Repositories/NYPollinatorData')
+#setwd('/Users/gra38/Library/CloudStorage/Box-Box/Repositories/NYPollinatorData/')
 # gs4_auth(email = "your@email.edu", cache = ".secrets")
 # Make sure to update your .gitignore to include .secrets and */.secrets
 # You will be taken to an authorization page, make sure to check the box that allows for editing
 ###
 
-gs4_auth(cache = ".secrets", email = "allingtonlab@gmail.com")
+#gs4_auth(cache = ".secrets", email = "allingtonlab@gmail.com")
 
-#gs4_auth(path = "nypollinators-ba8dc68e43a5.json")
+gs4_auth(path = "nypollinators-ba8dc68e43a5.json")
 #gs4_auth(scopes = "https://www.googleapis.com/auth/spreadsheets")
 
 
 sheet_id <- "https://docs.google.com/spreadsheets/d/1i4GgeNNNyl9zKKzhKfvoYChdTlrl_AHzKt_q0farXtc/edit?gid=0#gid=0"
 
 # the fields need to match the google sheet column headers AND the input IDs
-fields <- c("site_ID",	
+fields <- c(  "who_entered",
+              "setup_names",
+              "collect_names",	
+              "site_ID",	
             "plot_ID",
              "set_date",	
              "collect_date",
-             "setup_names",
-            "collect_names",	
 	          "start_date_time",	
 	          "end_date_time",	
-            "sample_effort_hr",
+       #     "sample_effort_hr",
             "num_traps_set",	
 	          "num_traps_collect",	
              "sky",
             "wind",
             "temp_min",
             "temp_max",
-             "who_entered",
             "notes")
 
 people <- list("GA",
