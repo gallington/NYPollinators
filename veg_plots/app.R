@@ -1,4 +1,4 @@
-# PANTRAPS
+# VEG PLOTS DATASHEETS
 
 library(shiny)
 library(shinyFeedback)
@@ -13,7 +13,7 @@ library(rsconnect)
 
 
 ### Before running the app copy the following lines of code into the console
-#setwd('/Users/gra38/Library/CloudStorage/Box-Box/Repositories/NYPollinatorData/pantraps')
+#setwd('/Users/gra38/Library/CloudStorage/Box-Box/Repositories/NYPollinatorData/veg_plots')
 #rsconnect::setAccountInfo(name='allingtonlab', token='20FB3DB97DEDF0C6A01EE094FF959E48', secret='Xck6O3lqhzWL2xD6BQKhSEbabiLiIaC16TD3eewq')
 
 # gs4_auth(email = "your@email.edu", cache = ".secrets")
@@ -27,25 +27,30 @@ gs4_auth(cache = ".secrets", email = "allingtonlab@gmail.com")
 #gs4_auth(scopes = "https://www.googleapis.com/auth/spreadsheets")
 
 
-sheet_id <- "1i4GgeNNNyl9zKKzhKfvoYChdTlrl_AHzKt_q0farXtc"
+sheet_id <- "1Or4p-1j4T8hidApszksb2LbLrrQPGoHgnljoqx9cGXw"
 
 # the fields need to match the google sheet column headers AND the input IDs
 fields <- c(  "who_entered",
-              "setup_names",
-              "collect_names",	
+              "collect_date",
+              "num_collectors",
+              "collector1",
+              "collector2",
               "site_ID" ,	
-            "plot_ID",
-             "set_date",
-             "collect_date",
-	          "start_date_time",
-	          "end_date_time",
-            "num_traps_set",
-	          "num_traps_collect",
-             "sky",
-            "wind",
-            "temp_min",
-            "temp_max",
-            "notes")
+              "plot_ID",
+              "direction",
+              "grass_cover",
+              "forb_cover",
+              "litter_cover",
+              "bare_cover",
+              "woody_cover",
+              "woody_stems",
+              "moss_cover",
+              "CWD_cover",
+              "FWD_cover",
+              "rock_cover",
+              "other_cover",
+              "other_type",
+              "notes")
 
 people <- list("GA",
                "AF",
@@ -54,7 +59,9 @@ people <- list("GA",
                "DM",
                "TS",
                "EM",
-               "HS")
+               "HS",
+               "N/A",
+               "other")
 
 sites <- list("McG",
               "MtP7C",
@@ -78,6 +85,13 @@ plotIDs <- list("WT",
                 "C15",
                 "C21")
 
+quadDirection <- list("NE",
+                      "SE",
+                      "SW",
+                      "NW")
+
+
+
 # Define functions to use in server logic
 table <- "entries"
 
@@ -97,48 +111,70 @@ loadData <- function() {
 # Define UI for app that can append to a google sheet  from input options
    ui <- fluidPage(
     DT::dataTableOutput("entries", width = 300), tags$hr(),
-    titlePanel("Pan Trap Data Entry"),
+    titlePanel("Veg Plot Data Entry"),
     selectInput("who_entered", "Name of person entering data",
                 choices = people,
                 selected = ""),
-    textInput("setup_names", "Who Did Setup? Name(s)", ""),
-    textInput("collect_names", "Who Did Collection? Name(s)", ""),
-    selectInput("site_ID", "Site ID" ,
+    dateInput("collect_date", "Collection Date", "2025-04-01", format = "yyyy/mm/dd"),
+    selectInput("collect1", "Who Collected? Name(s)", 
+                choices = people, selected = s""),
+    textInput("collect2", "Who Collected? Name(s)", 
+              choices = people, selected =""),
+     selectInput("site_ID", "Site ID" ,
                 choices = sites,
                 selected = ""),
     selectInput("plot_ID", "Plot ID",
                 choices = plotIDs,
                 selected = ""),
-    dateInput("set_date", "Setup Date", "2025-04-01", format = "yyyy/mm/dd"),
-    dateInput("collect_date", "Collection Date", "2025-04-01", format = "yyyy/mm/dd"),
-    timeInput("start_date_time", "Enter time (5 minute steps)",
-              value = strptime("09:00:00", "%T"), minute.steps = 5),
-    timeInput("end_date_time", "Enter time (5 minute steps)",
-              value = strptime("09:00:00", "%T"), minute.steps = 5),
-    numericInput("num_traps_set", "Number of bowls set",value = 15,
-                 min = 1,
-                 max = 15
-                ),
-    numericInput("num_traps_collect", "Number of bowls collected",value = 15,
-                 min = 1,
-                 max = 15
+    selectInput("direction", "Cardinal direction",
+                choices = quadDirection,
+                selected = ""),
+    numericInput("grass_cover", "Grass Cover", value = 1,
+                 min = 0,
+                 max = 100
                   ),
-    selectInput("sky", "Weather when pan traps were out",
-                choices = list("Sunny",
-                               "Partly Sunny",
-                               "Cloudy"),
-                selected = ""),
-    selectInput("wind", "Wind conditions when pan traps were out",
-                choices = list("No wind",
-                               "Breezy",
-                               "Windy"),
-                selected = ""),
-    sliderInput("temp_min", "Minimum temp over past 24 hrs",
-                min = 30, max = 100,
-                value = 30),
-    sliderInput("temp_max", "Maximum temp over past 24 hrs",
-                min = 30, max = 100,
-                value = 30),
+    numericInput("forb_cover", "Forb Cover", value = 1,
+                 min = 0,
+                 max = 100
+    ),
+    numericInput("litter_cover", "Litter Cover", value = 1,
+                 min = 0,
+                 max = 100
+    ),
+    numericInput("bare_cover", "Bare Cover", value = 1,
+                 min = 0,
+                 max = 100
+    ),
+    numericInput("woody_cover", "Woody Cover", value = 1,
+                 min = 0,
+                 max = 100
+    ),
+    numericInput("woody_stems", "Numer of woody stems", value = 1,
+                 min = 0,
+                 max = 100
+    ),
+    numericInput("moss_cover", "Moss Cover", value = 1,
+                 min = 0,
+                 max = 100
+    ),
+    numericInput("CWD_cover", "Coarse Woody Debris Cover", value = 1,
+                 min = 0,
+                 max = 100
+    ),
+    numericInput("FWD_cover", "Fine Woody Debris Cover", value = 1,
+                 min = 0,
+                 max = 100
+    ),
+    numericInput("rock_cover", "Rock Cover", value = 1,
+                 min = 0,
+                 max = 100
+    ),
+    numericInput("other_cover", "Other Cover", value = 1,
+                 min = 0,
+                 max = 100
+    ),
+    textInput("other_type", "Other type", ""
+    ),
     textInput("notes", "Notes", ""),
     actionButton("submit", "Submit")
   )
@@ -153,8 +189,6 @@ loadData <- function() {
         if (is.null(val)) NA else val
       }, simplify = FALSE)
       data <- as.data.frame(data, stringsAsFactors = FALSE)
-      data$temp_min <- as.numeric(data$temp_min)
-      data$temp_max <- as.numeric(data$temp_max)
       data
     })
     

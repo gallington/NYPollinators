@@ -1,12 +1,12 @@
-name: pantraps
-title: pantraps
+name: veg_plots
+title: veg_plots
 username: allingtonlab
 account: allingtonlab
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
-appId: 14818869
-bundleId: 10357830
-url: https://allingtonlab.shinyapps.io/pantraps/
+appId: 14837624
+bundleId: 10357856
+url: https://allingtonlab.shinyapps.io/veg_plots/
 version: 1
 asMultiple: FALSE
 asStatic: FALSE

@@ -5,6 +5,6 @@ account: allingtonlab
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 14810071
-bundleId: 10336320
+bundleId: 10352410
 url: https://allingtonlab.shinyapps.io/nypollinatordata/
 version: 1
