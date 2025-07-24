@@ -58,7 +58,8 @@ sites <- list("McG",
               "Arn6-4",
               "Arn3-1",
               "Arn6-6",
-              "Arn6-9")
+              "Arn6-9",
+              "Arn6-2")
 
 plotIDs <- list("WT",
                 "L",
@@ -72,7 +73,8 @@ plotIDs <- list("WT",
                 "SW22",
                 "C8",
                 "C15",
-                "C21"
+                "C21",
+                "6-2"
                 )
 
 # Define functions to use in server logic
@@ -104,7 +106,7 @@ loadData <- function() {
     selectInput("collector1", "Who Was Netting? Name 1:",
                 choices = people,
                 selected = ""),
-    selectInput("collector1", "Who Was Netting? Name 2: \n If more than 2 just enter 2 names. If less that 2 enter N/A here.",
+    selectInput("collector2", "Who Was Netting? Name 2: \n If more than 2 just enter 2 names. If less that 2 enter N/A here.",
                 choices = people,
                 selected = ""),
     dateInput("collect_date", "Collection Date", "2025-04-01", format = "yyyy/mm/dd"),

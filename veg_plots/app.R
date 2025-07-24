@@ -69,7 +69,8 @@ sites <- list("McG",
               "Arn6-4",
               "Arn3-1",
               "Arn6-6",
-              "Arn6-9")
+              "Arn6-9",
+              "Arn6-2")
 
 plotIDs <- list("WT",
                 "L",
@@ -83,7 +84,8 @@ plotIDs <- list("WT",
                 "SW22",
                 "C8",
                 "C15",
-                "C21")
+                "C21",
+                "6-2")
 
 quadDirection <- list("NE",
                       "SE",
@@ -116,10 +118,12 @@ loadData <- function() {
                 choices = people,
                 selected = ""),
     dateInput("collect_date", "Collection Date", "2025-04-01", format = "yyyy/mm/dd"),
-    selectInput("collect1", "Who Collected? Name(s)", 
-                choices = people, selected = s""),
-    textInput("collect2", "Who Collected? Name(s)", 
-              choices = people, selected =""),
+    selectInput("collector1", "Who Collected? Name 1", 
+                choices = people, 
+                selected = ""),
+    selectInput("collector2", "Who Collected? Name 2", 
+              choices = people, 
+              selected =""),
      selectInput("site_ID", "Site ID" ,
                 choices = sites,
                 selected = ""),
@@ -175,6 +179,7 @@ loadData <- function() {
     ),
     textInput("other_type", "Other type", ""
     ),
+    textInput("total_cover", "Total Cover (%)", ""),
     textInput("notes", "Notes", ""),
     actionButton("submit", "Submit")
   )

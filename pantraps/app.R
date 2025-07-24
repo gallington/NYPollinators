@@ -62,7 +62,8 @@ sites <- list("McG",
               "Arn6-4",
               "Arn3-1",
               "Arn6-6",
-              "Arn6-9")
+              "Arn6-9",
+              "Arn6-2")
 
 plotIDs <- list("WT",
                 "L",
@@ -76,7 +77,8 @@ plotIDs <- list("WT",
                 "SW22",
                 "C8",
                 "C15",
-                "C21")
+                "C21",
+                "6-2")
 
 # Define functions to use in server logic
 table <- "entries"
@@ -111,9 +113,9 @@ loadData <- function() {
                 selected = ""),
     dateInput("set_date", "Setup Date", "2025-04-01", format = "yyyy/mm/dd"),
     dateInput("collect_date", "Collection Date", "2025-04-01", format = "yyyy/mm/dd"),
-    timeInput("start_date_time", "Enter time (5 minute steps)",
+    timeInput("start_date_time", "Enter setup time (5 minute steps)",
               value = strptime("09:00:00", "%T"), minute.steps = 5),
-    timeInput("end_date_time", "Enter time (5 minute steps)",
+    timeInput("end_date_time", "Enter collect time (5 minute steps)",
               value = strptime("09:00:00", "%T"), minute.steps = 5),
     numericInput("num_traps_set", "Number of bowls set",value = 15,
                  min = 1,
