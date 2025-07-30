@@ -1,0 +1,12 @@
+name: UK_fruit_data
+title: UK_fruit_data
+username: allingtonlab
+account: allingtonlab
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 15141942
+bundleId: 10699820
+url: https://allingtonlab.shinyapps.io/UK_fruit_data/
+version: 1
+asMultiple: FALSE
+asStatic: FALSE
