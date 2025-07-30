@@ -5,7 +5,7 @@ account: allingtonlab
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 15139008
-bundleId: 10695887
+bundleId: 10699809
 url: https://allingtonlab.shinyapps.io/UK_fruit_quality/
 version: 1
 asMultiple: FALSE
