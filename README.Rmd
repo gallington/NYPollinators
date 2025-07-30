@@ -1,0 +1,18 @@
+---
+title: "README"
+author: "AllingtonLab"
+date: "`r Sys.Date()`"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## NY Pollinator Project Data Entry Apps
+
+This is a set of Shiny Apps to use for entering data from paper datasheets.
+Thanks to the SPASES Lab at Boise State for the template for the apps.
+
+
+
