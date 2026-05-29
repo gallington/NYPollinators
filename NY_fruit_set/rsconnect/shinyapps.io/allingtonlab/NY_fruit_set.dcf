@@ -1,0 +1,12 @@
+name: NY_fruit_set
+title: NY_fruit_set
+username: allingtonlab
+account: allingtonlab
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 17437298
+bundleId: 12054459
+url: https://allingtonlab.shinyapps.io/NY_fruit_set/
+version: 1
+asMultiple: FALSE
+asStatic: FALSE

@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "nypollinators",
+  "private_key_id": "ba8dc68e43a5c7956437a01963dc3719ac487009",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCnUJ5LC0tWvD5o\nSyIuI8yzZFNjpJkEMkLAzwMq6qWMG20irgcL1VqplhCq1BAu/ysA/EFr2m+c+sRF\nKQ4aasZihH/We8AclQhFtv2vlceJMn4YNzZTDauPLs1GRp8RrUd4Sk5yrer8Yfvx\nsryjuEP3XqnZhhlmkdCIQG6hD2ANDFLWcN8184TUbXMQQormrTUP+xasX+2L3HLq\nZJNym9rPWswtVBc8uZUSe3Bw4MHKiXT8zG/kJYnEbkFAHwIfaLkKAIuE76+hKW1e\nuPZJFhZsb3/AT1SgptUsfWB4cH+izZYDZwsS67MOHT6uGPO5nVB/isb0XZ8WfE59\n2g9q4M1jAgMBAAECggEAGylEOSyBM3hlrSqdRt466dhcjS14Ra0fFwvEGOB0tXTy\nV5HmxO4CxMr+s6yvX+G+im9o82hHfDVdTVjn2DQDNpUJ57i5LCqpaB/XuPxYoxYW\nUDoOUJdEhX70hfcK9aSqmIV/jLBdGFGTw93fL7jHF84/Rne1gegj8Sp8ixri3dsi\nCVMUoeHdLgOSYDq97muPeb3CETneFSUlrz/oSDobh19kiN5df/hVKlniBHXVP08i\no8QY3lMoUkHMbQkNg8D9G0iL1igR2e3hZ7GEFOLXIOpVwy2/4lZzKIgpAHtZSUTz\nuFoiXjsccCONrIAad/FJhHPxUpuUPu8qs3QxwWBpCQKBgQDYIvxZHKCoa5qqrb09\nL0zbyWGaxSh1UOy9iXtzTXDHXzwVzzPvOEa5NeiNL3Oe2HDwTKEaQ5pyZSbA9YTr\novy6GU8vwW7tSbX8bURVNt47KgNv+9pJa7b8OOcG8WJv+rIEt8XoSKEOqJ/oZmum\naj7rNuG+i5/IsS9Ry3ooeOe69QKBgQDGLHx9USkcd29rb8CQwBM7MMTyAHvY/CDA\ndjc4J/+Niww16o5mw5rARQcNW0Xfqexjms7lPtlsR0lD7D3eEHc8gmYpGGvll9MI\neXVO770W9tS3fn7V7jWd1KKoJegSey1sEEVeXCV5RUUuC9z4aq95kx9UPZmaXyem\nqKHBg7Df9wKBgAstO/lrto8fCV98HoYUdRgEgOyc92uhpKxkeKLMxWE59oR2M4xS\nT63yMLVkV8lGDgkPHWGbT1hNDMT7rUT2J7WD64lfqlnQ7v0/tUHm1XUfxg+7aV1U\nmaDPXHsKbnm18BC4ZB6P6uw0IhjFexme8uP88Y2F8NxS9Ux4hjejkPAlAoGAToXy\nDfXKxGzOyVNOigyRkjKQ1xM5/5BnqdstpiKzL/KYtARsyGtZNjYjxTcVSLqb4BvH\nPy7YF/9nGHLTUNpVZLSGpmH23tJ53DHEObLkyeSkBNEqkLoCpLdMfDQI8Mm+BcOs\nuObqMlMwRj6NICGlxhZ1o3uFEZYCsBbBgVwdCaECgYEAwI/WTyIpBVC041GRYede\n3NCza1oD1fSS7R0Mt4uZDR2KspNM1yS9bJhUyrL5UhRelUd+uucQW4ZkTGPmrT2a\ne0ddOUjIypRGPLKvVDN84eTcTHFTbJaUoYjX76bSZhdj/sAnuC53q+uEXc3SHcQu\nLRsAvuUI4Fn8IhvpzJsEQXg=\n-----END PRIVATE KEY-----\n",
+  "client_email": "nypollinatordata@nypollinators.iam.gserviceaccount.com",
+  "client_id": "112190558704370470630",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/nypollinatordata%40nypollinators.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
